@@ -1,0 +1,42 @@
+
+   <div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <label>Name:</label>
+      <input type="text" formControlName="name" required />
+  
+      <label>Phone:</label>
+      <input type="text" formControlName="phone" required />
+  
+      <label>ID Number:</label>
+      <input type="text" formControlName="idNumber" required />
+  
+      <label>Picture:</label>
+      <input type="file" (change)="onFileChange($event)" />
+  
+      <button type="submit">{{ editingIndex !== null ? 'Update' : 'Save' }}</button>
+    </form>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>ID Number</th>
+          <th>Picture</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ user.name }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.idNumber }}</td>
+          <td><img [src]="user.picture" alt="User Picture" width="50" /></td>
+          <td>
+            <button (click)="editUser(i)">Edit</button>
+            <button (click)="deleteUser(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
